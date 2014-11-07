@@ -1,7 +1,7 @@
 <?php
 /*
 Plugin Name: Codex Generator
-Plugin URI: http://wordpress.org/extend/plugins/codex-generator/
+Plugin URI: https://github.com/Rarst/codex-generator
 Description: Codex Generator is search, research and documentation generation tool for WordPress functions.
 Author: Andrey "Rarst" Savchenko
 Author URI: http://www.rarst.net/

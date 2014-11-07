@@ -54,7 +54,7 @@ class Codex_Generator extends Codex_Generator_Utility {
 
 		self::add_method( 'admin_enqueue_scripts' );
 		self::add_method( 'admin_print_styles' );
-		self::add_method( 'contextual_help' );
+//		self::add_method( 'contextual_help' );
 		self::add_method( 'admin_notices' );
 		self::add_method( 'admin_print_footer_scripts' );
 		add_screen_option( 'per_page', array( 'label' => __( 'functions', 'codex_gen' ), 'default' => 15 ) );
