@@ -89,9 +89,11 @@ class Codex_Generator_Utility {
 	 *
 	 * @return string
 	 */
-	static function last_dir( $path ) {
+	public static function last_dir( $path ) {
 
-		return array_pop( preg_split( '/[\/\\\]/', $path ) );
+		$path_parts = preg_split( '/[\/\\\]/', $path );
+
+		return array_pop( $path_parts );
 	}
 
 	/**
