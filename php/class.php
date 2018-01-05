@@ -147,8 +147,6 @@ class Codex_Generator extends Codex_Generator_Utility {
 			wp_die( 'You cannot access this page.' );
 
 		?><div class="wrap"><?php
-
-		screen_icon( 'tools' );
 		echo '<h2>' . __( 'Codex Generator', 'codex_gen' ) . '</h2>';
 
 		// TODO move to help
