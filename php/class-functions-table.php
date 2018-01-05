@@ -125,6 +125,7 @@ class Codex_Generator_Functions_Table extends WP_List_Table {
 		<option value=""></option>
 		<?php
 
+        // TODO get rid of paths for functions that were filtered out.
 		$tree = $this->explode_paths_to_tree( Codex_Generator_Phpdoc_Parser::get_paths() );
 		$this->print_tree( $tree, $path );
 

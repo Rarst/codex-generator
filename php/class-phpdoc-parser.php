@@ -24,10 +24,11 @@ class Codex_Generator_Phpdoc_Parser extends Codex_Generator_Utility {
 		if( isset( self::$arrays[$function] ) )
 			return self::$arrays[$function];
 
-		$reflect        = new ReflectionFunction( $function );
-		$output         = array();
-		$output['name'] = $reflect->getName();
-		$output['path'] = self::sanitize_path( $reflect->getFileName() );
+		$reflect             = new ReflectionFunction( $function );
+		$output              = array();
+		$output['name']      = $reflect->getName();
+		$output['full_path'] = self::trim_and_forward_slashes( $reflect->getFileName() );
+		$output['path']      = self::sanitize_path( $reflect->getFileName() );
 
 		if ( ! in_array( $output['path'], self::$paths ) )
 			self::$paths[] = $output['path'];

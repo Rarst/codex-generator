@@ -7,6 +7,9 @@ class Codex_Generator_Function_Query extends Codex_Generator_Utility {
 	public $args;
 	public $count;
 
+	protected $wp_dir;
+	protected $content_dir;
+
 	function __construct( $args = array() ) {
 
 		if ( ! isset( self::$user_functions ) ) {
@@ -31,6 +34,9 @@ class Codex_Generator_Function_Query extends Codex_Generator_Utility {
 			'return'          => 'name',
 			'skip_non_wp'     => false,
 		) );
+
+		$this->wp_dir      = self::trim_and_forward_slashes( ABSPATH );
+		$this->content_dir = self::trim_and_forward_slashes( WP_CONTENT_DIR );
 	}
 
 	/**
@@ -126,21 +132,25 @@ class Codex_Generator_Function_Query extends Codex_Generator_Utility {
 	}
 
 	/**
-	 * If function in content dir.
+	 * Checks if function is located in WP core dir, but not content dir..
 	 *
 	 * @param string $function name
 	 *
 	 * @return bool
 	 */
-	function filter_non_wp( $function ) {
+	public function filter_non_wp( $function ) {
 
 		$array = $this->get_array( $function );
 
-//		var_dump( $array['path'], WP_CONTENT_DIR ); die;
+		if ( false !== strpos( $array['full_path'], $this->content_dir ) ) {
+			return false;
+		}
 
-		// TODO this needs more robust check
+		if ( 0 !== strpos( $array['full_path'], $this->wp_dir ) ) {
+			return false;
+		}
 
-		return false === strpos( $array['path'], 'wp-content' );
+		return true;
 	}
 
 	function usort( $first, $second ) {
