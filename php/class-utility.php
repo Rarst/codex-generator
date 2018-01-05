@@ -99,14 +99,19 @@ class Codex_Generator_Utility {
 	/**
 	 * Cleans up version, changes MU to 3.0.0
 	 *
-	 * @param string $version
+	 * @param string|array $version Version string or array of strings for multiple uses in PHPDoc.
 	 *
 	 * @return string
 	 */
-	static function sanitize_version( $version ) {
+	public static function sanitize_version( $version ) {
 
-		if ( 'MU' == trim( $version ) )
+		if ( is_array( $version ) ) {
+			$version = $version[0];
+		}
+
+		if ( 'MU' === trim( $version ) ) {
 			$version = '3.0.0';
+		}
 
 		$version = preg_replace( '/[^\d\.]/', '', $version );
 		$version = trim( $version, '.' );
