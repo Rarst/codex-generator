@@ -119,21 +119,23 @@ class Codex_Generator extends Codex_Generator_Utility {
 	/**
 	 * Validates function name and generates error notices.
 	 */
-	static function admin_notices() {
+	public static function admin_notices() {
 
 		if ( function_exists( 'eaccelerator_info' ) ) {
 			/** @noinspection PhpUndefinedFunctionInspection */
 			$info = eaccelerator_info();
 
-			if ( $info['cache'] )
+			if ( $info['cache'] ) {
 				add_settings_error( 'codex_gen', 'eaccelerator', __( 'eAccelerator caching needs to be disabled to access PHPDoc information.', 'codex_gen' ) );
+			}
 		}
 
 		$doc = new ReflectionFunction( 'wp' );
 		$doc = $doc->getDocComment();
 
-		if( empty($doc['tags']) )
+		if ( empty( $doc ) ) {
 			add_settings_error( 'codex_gen', 'phpdoc', __( 'Could not retrieve PHPDoc information. Check that opcode caching is disabled on server.', 'codex_gen' ) );
+		}
 
 		settings_errors( 'codex_gen' );
 	}
